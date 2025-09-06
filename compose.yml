@@ -1,0 +1,23 @@
+name: netxtd
+services:
+  postgres:
+    image: postgres
+    container_name: netxtd-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: netxtd
+      POSTGRES_USER: netxtd
+      POSTGRES_PASSWORD: netxtd
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/sql/postgresql:/docker-entrypoint-initdb.d
+    networks:
+      - netxtd-network
+
+volumes:
+  postgres_data:
+
+networks:
+  netxtd-network:
+    driver: bridge
