@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
-import { traceIdMiddleware } from './middlewares/traceIdMiddleware';
-import { LoggingService } from './services/LoggingService';
-import { LogEntry } from './types/LogEntry';
-import { LogLevel } from './types/LogLevel';
+import { traceIdMiddleware } from './middleware/traceIdMiddleware';
+import { LoggingService } from './service/LoggingService';
+import { LogEntry } from './type/LogEntry';
+import { LogLevel } from './type/LogLevel';
 
 import packageJson from '../package.json';
 
