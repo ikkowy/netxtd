@@ -6,7 +6,7 @@ export class LogEntry {
   message: string;
   tenant?: string;
   traceId?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   constructor(logLevel: LogLevel, message: string) {
     this.timestamp = new Date();
