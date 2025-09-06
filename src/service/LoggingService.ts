@@ -1,5 +1,5 @@
-import { LogEntry } from '../type/LogEntry';
-import { getLogLevelIndex, LogLevel } from '../type/LogLevel';
+import { LogEntry } from '../types/LogEntry';
+import { getLogLevelIndex, LogLevel } from '../types/LogLevel';
 
 export type LogCallback = () => LogEntry;
 
