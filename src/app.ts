@@ -3,12 +3,20 @@ import { traceIdMiddleware } from './middleware/traceIdMiddleware';
 import { LoggingService } from './service/LoggingService';
 import { LogEntry } from './type/LogEntry';
 import { LogLevel } from './type/LogLevel';
-
 import packageJson from '../package.json';
+import { Pool } from 'pg';
 
 const app = express();
 
 const loggingService = new LoggingService();
+
+const pool = new Pool({
+  host: 'localhost',
+  port: 5432,
+  database: 'netxtd',
+  user: 'netxtd',
+  password: 'netxtd'
+});
 
 app.use(traceIdMiddleware);
 
@@ -25,6 +33,15 @@ systemRouter.get('/info', (req: Request, res: Response) => {
     application: packageJson.name,
     version: packageJson.version
   });
+});
+
+systemRouter.get('/health', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ database: 'connected', databaseTime: result.rows[0].now });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: 'Database unavailable' });
+  }
 });
 
 tenantRouter.get('/hello', (req: Request, res: Response) => {
