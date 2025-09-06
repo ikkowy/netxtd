@@ -1,17 +1,11 @@
-import { LogLevel } from "./LogLevel";
+import { LogLevel } from './LogLevel';
 
 export class LogEntry {
-
   timestamp: Date;
-
   level: LogLevel;
-
   message: string;
-
   tenant?: string;
-
   traceId?: string;
-
   metadata?: Record<string, any>;
 
   constructor(logLevel: LogLevel, message: string) {
@@ -19,5 +13,4 @@ export class LogEntry {
     this.level = logLevel;
     this.message = message;
   }
-
 }

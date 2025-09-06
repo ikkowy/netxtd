@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express, { Request, Response } from 'express';
 import { traceIdMiddleware } from './middlewares/traceIdMiddleware';
 import { LoggingService } from './services/LoggingService';
 import { LogEntry } from './types/LogEntry';
