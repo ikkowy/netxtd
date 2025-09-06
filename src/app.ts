@@ -1,8 +1,13 @@
 import express, {Request, Response} from 'express';
-import { tenantRouteMiddleware } from './middleware/tenantRouteMiddleware';
-import { traceIdMiddleware } from './middleware/traceIdMiddleware';
+import { tenantRouteMiddleware } from './middlewares/tenantRouteMiddleware';
+import { traceIdMiddleware } from './middlewares/traceIdMiddleware';
+import { LoggingService } from './services/LoggingService';
+import { LogEntry } from './types/LogEntry';
+import { LogLevel } from './types/LogLevel';
 
 const app = express();
+
+const loggingService = new LoggingService();
 
 app.use(traceIdMiddleware);
 
@@ -13,5 +18,5 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  loggingService.log(() => new LogEntry(LogLevel.Info, 'Server is running on port 3000'));
 });
